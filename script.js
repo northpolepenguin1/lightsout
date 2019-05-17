@@ -74,6 +74,7 @@ function isClear(box) {
     for (let i=0; i < box.length; i++) {
         if (box[i].classList.contains('onColor')) {
             isFinished = false;
+            break;
         }
     }
     return isFinished;
