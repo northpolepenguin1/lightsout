@@ -1,0 +1,20 @@
+/* CSS files add styling rules to your content */
+
+body {
+    font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
+    margin: 2em;
+  }
+  
+.createbox {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    color: white;
+    border: 1px solid white;
+    background-color: gray;
+
+}
+  
+.onColor {
+    background-color: deepskyblue;
+}
