@@ -1,40 +1,51 @@
-document.body.onload = main;
+/* If you're feeling fancy you can add interactivity 
+    to your site with Javascript */
+
 
 function main() {
-    const n = 5;
-    let cnt = 0;
-    for (let i = 0; i < n; i++) {
-        for (let j = 0; j < n; j++) {
-            let parentBox = document.getElementById('main');
-            let box = document.createElement("div");
-            parentBox.appendChild(box);
-            box.classList.add('createbox');
-            box.setAttribute('id', 'box'+cnt);
-            coloring(parentBox.children);
-            parentBox.addEventListener('click', eventHandler);
-            cnt += 1;
-        }
+    let childBox = makePanel();
+    registerEvent(childBox);
 
+}
+
+// パネル作成
+function makePanel(n=1) {
+    let parentBox = document.getElementById("boardTable");
+    let childBox = document.createElement("div");
+    childBox.classList.add("createbox");
+    childBox.setAttribute("id", "box"+n);
+    parentBox.appendChild(childBox);
+    coloredBox(parentBox.children);
+    if ( n < 25 ) {
+        makePanel(n+1);
+    }
+    return parentBox.children;
+}
+
+// パネルカラーリング
+function coloredBox(children) {
+    let parentBox = document.getElementById("boardTable");
+    let childNum = children.length;
+    let randNum = Math.floor(Math.random() * childNum);
+    children[randNum].classList.add('onColor');
+}
+
+// イベント登録処理
+function registerEvent(childNodes) {
+    let childNode = childNodes;
+    for (let i = 0; i < childNode.length; i++) {
+        childNode[i].addEventListener('click', eventHandler);
     }
 }
 
-// boxクリック時の処理
+//クリックされた時の処理
 function eventHandler(e) {
+    let parentBox = document.getElementById("boardTable");
     let target = e.target;
-    let targetId = target.id;
-    let index = targetId.replace('box', '');
-    let n = 5;
-    if (target.classList.contains('onColor')) {
-        target.classList.remove('onColor');
-        checkBox(index, n);
-    } else if (target.classList.contains('onColor') === false ) {
-        target.classList.add('onColor');
-        checkBox(index, n);
-    }
+    console.log(target);
 }
 
-
-function checkBox(index, n) {
+function checkedEndBox(index, n) {
     const isTop = Math.floor(index / n) === 0;
     const isBottom = Math.floor(index / n) === n - 1;
     const isLeft = Math.floor(index % n) === 0;
@@ -55,34 +66,4 @@ function checkBox(index, n) {
     }
 }
 
-function toggleColor(index, n) {
-    let array = new Array()
-    array = [index+n, index-n, index+1, index-1];
-    for (let i = 0; i < array.length; i++) {
-        let coloredBox = document.getElementById('box'+array[i]);
-        if (coloredBox.classList.contains('onColor')) {
-            coloredBox.classList.remove('onColor');
-        } else {
-            coloredBox.classList.add('onColor');
-        }
-    }
-}
-
-// クリア判定
-function isClear(box) {
-    let isFinished = true;
-    for (let i=0; i < box.length; i++) {
-        if (box[i].classList.contains('onColor')) {
-            isFinished = false;
-            break;
-        }
-    }
-    return isFinished;
-}
-
-// 色をつける処理
-function coloring(children) {
-    let childNum = children.length;
-    let randNum = Math.floor(Math.random() * childNum);
-    children[randNum].classList.add('onColor');
-}
+main();

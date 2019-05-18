@@ -4,7 +4,8 @@ body {
     font-family: "Benton Sans", "Helvetica Neue", helvetica, arial, sans-serif;
     margin: 2em;
   }
-  
+
+
 .createbox {
     display: inline-block;
     width: 100px;
@@ -12,9 +13,8 @@ body {
     color: white;
     border: 1px solid white;
     background-color: gray;
-
 }
-  
+
 .onColor {
     background-color: deepskyblue;
 }
