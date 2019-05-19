@@ -42,38 +42,26 @@ function registerEvent(childNodes) {
     }
 }
 
-//クリックされた時の処理
+// クリックされた時の処理
 function eventHandler(e) {
+    let n = 5;
     let parentBox = document.getElementById("boardTable");
     let target = e.target;
     let targetId = target.id;
-    if (target.classList.contains("onColor")) {
-        target.classList.remove("onColor");
+    let index = targetId.replace("box", "");
 
-    } else {
-        target.classList.add("onColor");
-    }
+    // 端っこのボックス判定
+    let isEndTop = Math.floor(index / n) === 0;
+    let isEndBottom = Math.floor(index / n) === n - 1;
+    let isEndLeft = Math.floor(index % n) === 0;
+    let isEndRight = Math.floor(index % n) === n - 1;
+
+    // 隣り合うどうしのものを切り替えるための定義
+    let up = index - 1;
+    let down = index + 5
+    let left = index - 1;
+    let right = index + 1;
 }
 
-function checkedEndBox(index, n) {
-    const isTop = Math.floor(index / n) === 0;
-    const isBottom = Math.floor(index / n) === n - 1;
-    const isLeft = Math.floor(index % n) === 0;
-    const isRight = Math.floor(index % n) === n - 1;
-    
-    console.log(isTop, isBottom, isLeft, isRight);
-    if (!isTop) {
-        toggleColor(index, n);
-    }
-    if (!isBottom) {
-        toggleColor(index, n);
-    }
-    if (!isLeft) {
-        toggleColor(index, n);
-    }
-    if (!isRight) {
-        toggleColor(index, n);
-    }
-}
 
 main();
