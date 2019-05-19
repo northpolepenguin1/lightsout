@@ -5,6 +5,10 @@ body {
     margin: 2em;
   }
 
+.title {
+    font-weight: bold;
+    color: rgb(22, 25, 196)
+}
 
 .createbox {
     display: inline-block;
@@ -12,7 +16,7 @@ body {
     height: 100px;
     color: white;
     border: 1px solid white;
-    background-color: gray;
+    background-color: rgb(99, 94, 94);
 }
 
 .onColor {
