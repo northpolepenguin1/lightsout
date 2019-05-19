@@ -64,53 +64,47 @@ function eventHandler(e) {
     let down = Number(Number(index) + 5);
     let left = Number(index - 1);
     let right = Number(Number(index) + 1);
+    target.classList.toggle("onColor");
     console.log(isEndTop, isEndBottom, isEndLeft, isEndRight);
     if (isEndTop === false && isEndBottom === false && isEndLeft === false && isEndRight === false) {
         let upBox = document.getElementById("box"+up);
         let downBox = document.getElementById("box"+down);
         let leftBox = document.getElementById("box"+left);
         let rightBox = document.getElementById("box"+right);
-        target.classList.toggle("onColor");
         upBox.classList.toggle("onColor");
         downBox.classList.toggle("onColor");
         leftBox.classList.toggle("onColor");
         rightBox.classList.toggle("onColor");
     }
-    
     if (isEndTop) {
         let downBox = document.getElementById("box"+down);
-        target.classList.toggle("onColor");
         downBox.classList.toggle("onColor");
     }
     if (isEndBottom) {
         let upBox = document.getElementById("box"+up);
-        target.classList.toggle("onColor");
         upBox.classList.toggle("onColor");
     }
     if (isEndLeft) {
         let rightBox = document.getElementById("box"+right);
-        target.classList.toggle("onColor");
         rightBox.classList.toggle("onColor");
     }
     if (isEndRight) {
         let leftBox = document.getElementById("box"+left);
-        console.log(target);    
-        target.classList.toggle("onColor");
         leftBox.classList.toggle("onColor");
     }
 }
 
-// function isClear(childBox) {
-//     let childNodesNum = childBox.length;
-//     let isCleared = true
-//     for (let i=0; i<childNodesNum; i++) {
-//         if (childBox.classList.contains("onColor")) {
-//             isCleared = false;
-//             return isCleared;
-//         }
-//     }
-//     return isCleared;
-// }
+function isClear(childBox) {
+    let childNodesNum = childBox.length;
+    let isCleared = true
+    for (let i=0; i<childNodesNum; i++) {
+        if (childBox.classList.contains("onColor")) {
+            isCleared = false;
+            return isCleared;
+        }
+    }
+    return isCleared;
+}
 
 
 main();
