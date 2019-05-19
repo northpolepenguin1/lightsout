@@ -59,14 +59,13 @@ function eventHandler(e) {
     let isEndBottom = Math.floor(index / n) === n - 1;
     let isEndLeft = Math.floor(index % n) === 0;
     let isEndRight = Math.floor(index % n) === n - 1;
-
     // 隣り合うどうしのものを切り替えるための定義
     let up = Number(index - 5);
     let down = Number(Number(index) + 5);
     let left = Number(index - 1);
     let right = Number(Number(index) + 1);
-
-    if (isEndTop === false && isEndTop === false && isEndLeft === false && isEndRight === false) {
+    console.log(isEndTop, isEndBottom, isEndLeft, isEndRight);
+    if (isEndTop === false && isEndBottom === false && isEndLeft === false && isEndRight === false) {
         let upBox = document.getElementById("box"+up);
         let downBox = document.getElementById("box"+down);
         let leftBox = document.getElementById("box"+left);
@@ -77,7 +76,28 @@ function eventHandler(e) {
         leftBox.classList.toggle("onColor");
         rightBox.classList.toggle("onColor");
     }
-
+    
+    if (isEndTop) {
+        let downBox = document.getElementById("box"+down);
+        target.classList.toggle("onColor");
+        downBox.classList.toggle("onColor");
+    }
+    if (isEndBottom) {
+        let upBox = document.getElementById("box"+up);
+        target.classList.toggle("onColor");
+        upBox.classList.toggle("onColor");
+    }
+    if (isEndLeft) {
+        let rightBox = document.getElementById("box"+right);
+        target.classList.toggle("onColor");
+        rightBox.classList.toggle("onColor");
+    }
+    if (isEndRight) {
+        let leftBox = document.getElementById("box"+left);
+        console.log(target);    
+        target.classList.toggle("onColor");
+        leftBox.classList.toggle("onColor");
+    }
 }
 
 // function isClear(childBox) {
