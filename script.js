@@ -5,14 +5,18 @@
 function main() {
     let childBox = makePanel();
     registerEvent(childBox);
+
+    // if (isClear(childBox)) {
+    //     alert("クリア");
+    // }
 }
 
 // パネル作成
-function makePanel(n=1) {
+function makePanel(n=1, cnt=0) {
     let parentBox = document.getElementById("boardTable");
     let childBox = document.createElement("div");
     childBox.classList.add("createbox");
-    childBox.setAttribute("id", "box"+n);
+    childBox.setAttribute("id", "box"+cnt);
     parentBox.appendChild(childBox);
     coloredBox(parentBox.children);
     if (n % 5 == 0) {
@@ -21,7 +25,7 @@ function makePanel(n=1) {
     }
 
     if ( n < 25 ) {
-        makePanel(n+1);
+        makePanel(n+1, cnt+1);
     }
     return parentBox.children;
 }
@@ -49,7 +53,7 @@ function eventHandler(e) {
     let target = e.target;
     let targetId = target.id;
     let index = targetId.replace("box", "");
-
+    console.log(index);
     // 端っこのボックス判定
     let isEndTop = Math.floor(index / n) === 0;
     let isEndBottom = Math.floor(index / n) === n - 1;
@@ -57,11 +61,36 @@ function eventHandler(e) {
     let isEndRight = Math.floor(index % n) === n - 1;
 
     // 隣り合うどうしのものを切り替えるための定義
-    let up = index - 1;
-    let down = index + 5
-    let left = index - 1;
-    let right = index + 1;
+    let up = Number(index - 5);
+    let down = Number(Number(index) + 5);
+    let left = Number(index - 1);
+    let right = Number(Number(index) + 1);
+
+    if (isEndTop === false && isEndTop === false && isEndLeft === false && isEndRight === false) {
+        let upBox = document.getElementById("box"+up);
+        let downBox = document.getElementById("box"+down);
+        let leftBox = document.getElementById("box"+left);
+        let rightBox = document.getElementById("box"+right);
+        target.classList.toggle("onColor");
+        upBox.classList.toggle("onColor");
+        downBox.classList.toggle("onColor");
+        leftBox.classList.toggle("onColor");
+        rightBox.classList.toggle("onColor");
+    }
+
 }
+
+// function isClear(childBox) {
+//     let childNodesNum = childBox.length;
+//     let isCleared = true
+//     for (let i=0; i<childNodesNum; i++) {
+//         if (childBox.classList.contains("onColor")) {
+//             isCleared = false;
+//             return isCleared;
+//         }
+//     }
+//     return isCleared;
+// }
 
 
 main();
