@@ -5,7 +5,6 @@
 function main() {
     let childBox = makePanel();
     registerEvent(childBox);
-
 }
 
 // パネル作成
@@ -16,6 +15,11 @@ function makePanel(n=1) {
     childBox.setAttribute("id", "box"+n);
     parentBox.appendChild(childBox);
     coloredBox(parentBox.children);
+    if (n % 5 == 0) {
+        let brBox = document.createElement("div");
+        childBox.parentNode.insertBefore(brBox, childBox.nextSibling); 
+    }
+
     if ( n < 25 ) {
         makePanel(n+1);
     }
@@ -42,7 +46,13 @@ function registerEvent(childNodes) {
 function eventHandler(e) {
     let parentBox = document.getElementById("boardTable");
     let target = e.target;
-    console.log(target);
+    let targetId = target.id;
+    if (target.classList.contains("onColor")) {
+        target.classList.remove("onColor");
+
+    } else {
+        target.classList.add("onColor");
+    }
 }
 
 function checkedEndBox(index, n) {
