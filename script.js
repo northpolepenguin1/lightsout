@@ -6,9 +6,9 @@ function main() {
     let childBox = makePanel();
     registerEvent(childBox);
 
-    // if (isClear(childBox)) {
-    //     alert("クリア");
-    // }
+    if (isClear(childBox)) {
+         alert("クリア");
+    }
 }
 
 // パネル作成
@@ -65,7 +65,7 @@ function eventHandler(e) {
     let left = Number(index - 1);
     let right = Number(Number(index) + 1);
     target.classList.toggle("onColor");
-    console.log(isEndTop, isEndBottom, isEndLeft, isEndRight);
+    console.log('isEndTop:', isEndTop, 'isEndBottom:', isEndBottom, 'isEndLeft:', isEndLeft, 'isEndRight:', isEndRight);
     if (isEndTop === false && isEndBottom === false && isEndLeft === false && isEndRight === false) {
         let upBox = document.getElementById("box"+up);
         let downBox = document.getElementById("box"+down);
@@ -76,6 +76,7 @@ function eventHandler(e) {
         leftBox.classList.toggle("onColor");
         rightBox.classList.toggle("onColor");
     }
+
     if (isEndTop) {
         let downBox = document.getElementById("box"+down);
         downBox.classList.toggle("onColor");
@@ -98,7 +99,7 @@ function isClear(childBox) {
     let childNodesNum = childBox.length;
     let isCleared = true
     for (let i=0; i<childNodesNum; i++) {
-        if (childBox.classList.contains("onColor")) {
+        if (childBox[i].classList.contains("onColor")) {
             isCleared = false;
             return isCleared;
         }
