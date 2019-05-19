@@ -80,18 +80,43 @@ function eventHandler(e) {
     if (isEndTop) {
         let downBox = document.getElementById("box"+down);
         downBox.classList.toggle("onColor");
+        if (isEndLeft === false && isEndRight === false) {
+            console.log('isEndTop:', isEndTop, 'isEndBottom:', isEndBottom, 'isEndLeft:', isEndLeft, 'isEndRight:', isEndRight);
+            let leftBox = document.getElementById("box"+left);
+            let rightBox = document.getElementById("box"+right);
+            leftBox.classList.toggle("onColor");
+            rightBox.classList.toggle("onColor");
+        }
     }
     if (isEndBottom) {
         let upBox = document.getElementById("box"+up);
         upBox.classList.toggle("onColor");
+        if (isEndLeft === false && isEndRight === false) {
+            let leftBox = document.getElementById("box"+left);
+            let rightBox = document.getElementById("box"+right);
+            leftBox.classList.toggle("onColor");
+            rightBox.classList.toggle("onColor");
+        }
     }
     if (isEndLeft) {
         let rightBox = document.getElementById("box"+right);
         rightBox.classList.toggle("onColor");
+        if (isEndTop === false && isEndBottom === false) {
+            let upBox = document.getElementById("box"+up);
+            let downBox = document.getElementById("box"+down);
+            upBox.classList.toggle("onColor");
+            downBox.classList.toggle("onColor");
+        }
     }
     if (isEndRight) {
         let leftBox = document.getElementById("box"+left);
         leftBox.classList.toggle("onColor");
+        if (isEndTop === false && isEndBottom === false) {
+            let upBox = document.getElementById("box"+up);
+            let downBox = document.getElementById("box"+down);
+            upBox.classList.toggle("onColor");
+            downBox.classList.toggle("onColor");
+        }
     }
 }
 
